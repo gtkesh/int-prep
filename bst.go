@@ -31,7 +31,7 @@ func (bst *BST) insert(root *node, val int) *node {
 	switch {
 	case val < root.val:
 		root.left = bst.insert(root.left, val)
-	case val >= bst.root.val:
+	case val >= root.val:
 		root.right = bst.insert(root.right, val)
 	}
 
@@ -46,7 +46,7 @@ func (bst *BST) find(root *node, val int) bool {
 	return root.val == val || bst.find(root.left, val) || bst.find(root.right, val)
 }
 
-// Search: does the same thing s Find but faster - O(logn).
+// Search: does the same thing as Find but faster - O(logn).
 func (bst *BST) search(root *node, val int) bool {
 	if root == nil {
 		return false
@@ -70,6 +70,56 @@ func (bst *BST) sum(root *node) int {
 		return 0
 	}
 	return root.val + bst.sum(root.left) + bst.sum(root.right)
+}
+
+func (bst *BST) traversePreorder(root *node) {
+	if root == nil {
+		return
+	}
+
+	fmt.Printf("%v ", root.val)
+
+	if root.left != nil {
+		bst.traversePreorder(root.left)
+	}
+
+	if root.right != nil {
+		bst.traversePreorder(root.right)
+	}
+}
+
+func (bst *BST) traverseInorder(root *node) {
+	if root == nil {
+		return
+	}
+
+	if root.left != nil {
+		bst.traverseInorder(root.left)
+	}
+
+	fmt.Printf("%v ", root.val)
+
+	if root.right != nil {
+		bst.traverseInorder(root.right)
+	}
+
+}
+
+func (bst *BST) traversePostorder(root *node) {
+	if root == nil {
+		return
+	}
+
+	if root.left != nil {
+		bst.traversePostorder(root.left)
+	}
+
+	if root.right != nil {
+		bst.traversePostorder(root.right)
+	}
+
+	fmt.Printf("%v ", root.val)
+
 }
 
 // TODO:

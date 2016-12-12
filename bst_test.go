@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestSize(t *testing.T) {
 	// Create a BST.
@@ -138,4 +141,34 @@ func TestSum(t *testing.T) {
 			"got", sum,
 		)
 	}
+}
+
+func TestTraversal(t *testing.T) {
+	bst := new(BST)
+	// Tree structure
+	/*
+	        40
+	       /  \
+	     25    78
+	    /  \
+	   10  32
+
+	*/
+
+	bst.root = bst.insert(bst.root, 40)
+	bst.root = bst.insert(bst.root, 25)
+	bst.root = bst.insert(bst.root, 78)
+	bst.root = bst.insert(bst.root, 10)
+	bst.root = bst.insert(bst.root, 32)
+
+	// Print Preorder
+	bst.traversePreorder(bst.root)
+	fmt.Println()
+	// Print Inorder
+	bst.traverseInorder(bst.root)
+	fmt.Println()
+	// Print Postorder
+	bst.traversePostorder(bst.root)
+	fmt.Println()
+
 }
